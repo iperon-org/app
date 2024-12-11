@@ -6,7 +6,8 @@ on:
       - created
 
 jobs:
-  "Build release":
+  Release:
+    name: "Build release"
     runs-on: macos-latest
     timeout-minutes: 10
     steps:

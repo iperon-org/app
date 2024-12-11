@@ -6,7 +6,8 @@ on:
       - main
 
 jobs:
-  Build:
+  Debug:
+    name: "Build debug"
     runs-on: macos-latest
     timeout-minutes: 10
     steps:
