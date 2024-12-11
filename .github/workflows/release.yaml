@@ -6,7 +6,7 @@ on:
       - created
 
 jobs:
-  build:
+  Build:
     runs-on: macos-latest
     timeout-minutes: 10
     steps:
@@ -58,7 +58,7 @@ jobs:
         with:
           name: iperon-android-${{ steps.flutter_version.outputs.version_number }}.abb
           path: |
-            build/app/outputs/bundle/release/app-release.abb
+            build/app/outputs/flutter-apk/abb-release.abb
           retention-days: 90
 
       - name: "Upload artifact ios application (app)"
