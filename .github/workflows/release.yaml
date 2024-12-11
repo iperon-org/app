@@ -6,7 +6,7 @@ on:
       - created
 
 jobs:
-  Build:
+  "Build release":
     runs-on: macos-latest
     timeout-minutes: 10
     steps:
@@ -39,9 +39,6 @@ jobs:
       - name: "Build appbundle"
         run: flutter build appbundle --release
 
-      - name: "Build appbundle"
-        run: flutter build appbundle --release
-
       - name: "Build ios"
         run: flutter build ios --release --no-codesign
 
@@ -58,7 +55,7 @@ jobs:
         with:
           name: iperon-android-${{ steps.flutter_version.outputs.version_number }}.abb
           path: |
-            build/app/outputs/flutter-apk/abb-release.abb
+            build/app/outputs/bundle/release/app-release.aab
           retention-days: 90
 
       - name: "Upload artifact ios application (app)"
@@ -66,5 +63,5 @@ jobs:
         with:
           name: iperon-android-${{ steps.flutter_version.outputs.version_number }}.app
           path: |
-            build/app/outputs/bundle/release/app-release.app
+            build/ios/iphoneos/Runner.app
           retention-days: 90
