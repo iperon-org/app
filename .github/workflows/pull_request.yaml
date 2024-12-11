@@ -17,6 +17,10 @@ jobs:
           channel: stable
 #          flutter-version-file: pubspec.yaml # path to pubspec.yaml
       - run: flutter --version
+      - run: flutter pub get
+      - run: flutter test
+      - run: flutter build appbundle
+      - run: flutter build ios --release --no-codesign
 
 #  Linter:
 #    uses: github.com/iperon-org/app/.github/workflows/_linter.yaml@ci_cd
