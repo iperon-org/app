@@ -12,7 +12,7 @@ jobs:
       - name: Clone repository
         uses: actions/checkout@v4
       - name: Auto tag
-        uses: Klemensas/action-autotag@stable
+        uses: jacopocarlini/action-autotag@stable
         with:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
           package_root: "."
