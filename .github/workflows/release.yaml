@@ -62,7 +62,7 @@ jobs:
       - name: "Upload artifact ios application (app)"
         uses: actions/upload-artifact@v4
         with:
-          name: iperon-android-${{ steps.flutter_version.outputs.version_number }}.app
+          name: iperon-ios-${{ steps.flutter_version.outputs.version_number }}.app
           path: |
             build/ios/iphoneos/Runner.app
           retention-days: 90
