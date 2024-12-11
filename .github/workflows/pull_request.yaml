@@ -15,7 +15,7 @@ jobs:
         id: flutter_version
         uses: bungabear/flutter_version_read@main
         with:
-          file: ${{ github.workspace }}/pubspec.yml
+          file: ${{ github.workspace }}/pubspec.yaml
       - name: Flutter App Version Number
         run: echo 'version_number:' ${{ steps.flutter_version.outputs.version_number }}
 
