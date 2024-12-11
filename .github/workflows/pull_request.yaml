@@ -6,7 +6,8 @@ on:
       - main
 
 jobs:
-  Version:
+  version:
+    runs-on: ubuntu-latest
     steps:
       - name: Clone repository
         uses: actions/checkout@v4
