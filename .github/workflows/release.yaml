@@ -48,7 +48,7 @@ jobs:
         with:
           name: iperon-android-${{ steps.flutter_version.outputs.version_number }}.apk
           path: |
-            build/app/outputs/bundle/release/app-release.apk
+            build/app/outputs/flutter-apk/app-release.apk
           retention-days: 90
 
       - name: "Upload artifact android application (abb)"
