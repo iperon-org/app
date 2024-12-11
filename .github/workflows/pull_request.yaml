@@ -11,12 +11,14 @@ jobs:
     steps:
       - name: Clone repository
         uses: actions/checkout@v4
+      - uses: Klemensas/action-autotag@stable
+        with:
+          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+          tag_prefix: "v"
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
         with:
           channel: stable
-#          flutter-version-file: pubspec.yaml # path to pubspec.yaml
-      - run: flutter --version
       - run: flutter pub get
       - run: flutter test
       - run: flutter build appbundle
