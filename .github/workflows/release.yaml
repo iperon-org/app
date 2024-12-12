@@ -38,26 +38,26 @@ jobs:
       - name: "Flutter pub get"
         run: flutter pub get
 
-      - name: "Build apk"
-        run: flutter build apk --release
-
-      - name: "Build appbundle"
-        run: flutter build appbundle --release
+#      - name: "Build apk"
+#        run: flutter build apk --release
+#
+#      - name: "Build appbundle"
+#        run: flutter build appbundle --release
 
       - name: "Build ios"
         run: flutter build ios --release --no-codesign
 
       - name: "Build ios (rename)"
         run: |
-          mv build/ios/iphoneos/Runner.app build/ios/iphoneos/iphone.app
+          mv build/ios/iphoneos/Runner.app build/ios/iphoneos/iphone.dat
 
       - uses: ncipollo/release-action@v1
         with:
           generateReleaseNotes: true
           artifacts: |
-            build/app/outputs/flutter-apk/*.apk
-            build/app/outputs/bundle/release/*.aab
-            build/ios/iphoneos/*.app
+#            build/app/outputs/flutter-apk/*.apk
+#            build/app/outputs/bundle/release/*.aab
+            build/ios/iphoneos/*.dat
 
 #          bodyFile: "body.md"
 
