@@ -49,8 +49,8 @@ jobs:
 
       - name: "Build pre release"
         run: |
-          mv build/ios/iphoneos/Runner.app build/ios/iphoneos/iperon.app
-          tar -czvf iperon-ios.tar.gz build/ios/iphoneos/iperon.app
+          mv build/ios/iphoneos/Runner.app iperon.app
+          tar -czvf iperon-ios.tar.gz iperon.app
 
       - uses: ncipollo/release-action@v1
         with:
