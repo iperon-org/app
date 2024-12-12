@@ -50,6 +50,8 @@ jobs:
       - name: "Build pre release"
         run: |
           mv build/ios/iphoneos/Runner.app iperon-${{ steps.flutter_version.outputs.version_number }}.app
+          mv build/app/outputs/flutter-apk/app-release.apk iperon-android-${{ steps.flutter_version.outputs.version_number }}.apk
+          mv build/app/outputs/bundle/release/app-release.aab iperon-android-${{ steps.flutter_version.outputs.version_number }}.aab
           tar -czvf iperon-ios-${{ steps.flutter_version.outputs.version_number }}.tar.gz iperon-${{ steps.flutter_version.outputs.version_number }}.app
           
 
@@ -58,8 +60,8 @@ jobs:
           generateReleaseNotes: true
           artifacts: |
             iperon-ios-${{ steps.flutter_version.outputs.version_number }}.tar.gz
-            build/app/outputs/flutter-apk/app-release.apk
-            build/app/outputs/bundle/release/app-release.aab
+            iperon-android-${{ steps.flutter_version.outputs.version_number }}.apk
+            iperon-android-${{ steps.flutter_version.outputs.version_number }}.aab
 
 #            build/app/outputs/flutter-apk/*.apk
 #            build/app/outputs/bundle/release/*.aab
