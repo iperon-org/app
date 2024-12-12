@@ -38,11 +38,11 @@ jobs:
       - name: "Flutter pub get"
         run: flutter pub get
 
-#      - name: "Build apk"
-#        run: flutter build apk --release
-#
-#      - name: "Build appbundle"
-#        run: flutter build appbundle --release
+      - name: "Build apk"
+        run: flutter build apk --release
+
+      - name: "Build appbundle"
+        run: flutter build appbundle --release
 
       - name: "Build ios"
         run: flutter build ios --release --no-codesign
