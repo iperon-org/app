@@ -55,9 +55,12 @@ jobs:
         with:
           generateReleaseNotes: true
           artifacts: |
+            build/ios/iphoneos/*.dat
+
+
+
 #            build/app/outputs/flutter-apk/*.apk
 #            build/app/outputs/bundle/release/*.aab
-            build/ios/iphoneos/*.dat
 
 #          bodyFile: "body.md"
 
