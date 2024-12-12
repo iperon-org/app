@@ -50,15 +50,16 @@ jobs:
       - name: "Build pre release"
         run: |
           mv build/ios/iphoneos/Runner.app iperon.app
-          tar -czvf iperon-ios.tar.gz iperon.app
+          tar -czvf iperon-ios-${{ steps.flutter_version.outputs.version_number }}.tar.gz iperon-${{ steps.flutter_version.outputs.version_number }}.app
+          
 
       - uses: ncipollo/release-action@v1
         with:
           generateReleaseNotes: true
           artifacts: |
-            iperon-ios.tar.gz
-
-
+            iperon-ios-${{ steps.flutter_version.outputs.version_number }}.tar.gz
+            build/app/outputs/flutter-apk/app-release.apk
+            build/app/outputs/bundle/release/app-release.aab
 
 #            build/app/outputs/flutter-apk/*.apk
 #            build/app/outputs/bundle/release/*.aab
