@@ -49,16 +49,14 @@ jobs:
 
       - name: "Build ios (rename)"
         run: |
-          ls -la build/ios/iphoneos/
           mv build/ios/iphoneos/Runner.app build/ios/iphoneos/iperon.app
-          tar -czvf build/ios/iphoneos/iperon-ios.tgz build/ios/iphoneos/iperon.app
+          tar -czvf build/ios/iphoneos/iperon-ios.tar.gz build/ios/iphoneos/iperon.app
 
       - uses: ncipollo/release-action@v1
         with:
           generateReleaseNotes: true
-          compression-level: 0
           artifacts: |
-            build/ios/iphoneos/iperon-ios.tgz
+            build/ios/iphoneos/iperon-ios.tar.gz
 
 
 
