@@ -54,7 +54,6 @@ jobs:
           mv build/app/outputs/bundle/release/app-release.aab iperon-android-${{ steps.flutter_version.outputs.version_number }}.aab
           tar -czvf iperon-ios-${{ steps.flutter_version.outputs.version_number }}.tar.gz iperon-${{ steps.flutter_version.outputs.version_number }}.app
           
-
       - uses: ncipollo/release-action@v1
         with:
           generateReleaseNotes: true
