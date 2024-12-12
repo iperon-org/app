@@ -49,7 +49,7 @@ jobs:
 
       - name: "Build pre release"
         run: |
-          mv build/ios/iphoneos/Runner.app iperon.app
+          mv build/ios/iphoneos/Runner.app iperon-${{ steps.flutter_version.outputs.version_number }}.app
           tar -czvf iperon-ios-${{ steps.flutter_version.outputs.version_number }}.tar.gz iperon-${{ steps.flutter_version.outputs.version_number }}.app
           
 
