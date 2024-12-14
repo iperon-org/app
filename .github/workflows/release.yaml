@@ -1,10 +1,5 @@
 name: Release
 
-#on:
-#  release:
-#    types:
-#      - created
-
 on:
   push:
     tags:
@@ -48,6 +43,13 @@ jobs:
       - name: "Build ios"
         run: flutter build ios --release --no-codesign
 
+      - name: Conventional Commits
+        id: changelog
+        uses: requarks/changelog-action@v1
+        with:
+          token: ${{ github.token }}
+          tag: ${{ github.ref_name }}
+
       - name: "Build pre release"
         run: |
           mv build/ios/iphoneos/Runner.app iperon-${{ steps.flutter_version.outputs.version_number }}.app
@@ -55,47 +57,11 @@ jobs:
           mv build/app/outputs/bundle/release/app-release.aab iperon-android-${{ steps.flutter_version.outputs.version_number }}.aab
           tar -czvf iperon-ios-${{ steps.flutter_version.outputs.version_number }}.tar.gz iperon-${{ steps.flutter_version.outputs.version_number }}.app
 
-      - name: Update CHANGELOG
-        id: changelog
-        uses: requarks/changelog-action@v1
-        with:
-          token: ${{ github.token }}
-          tag: ${{ github.ref_name }}
-
       - uses: ncipollo/release-action@v1
         with:
-          generateReleaseNotes: true
+#          generateReleaseNotes: true
           body: ${{ steps.changelog.outputs.changes }}
           artifacts: |
             iperon-ios-${{ steps.flutter_version.outputs.version_number }}.tar.gz
             iperon-android-${{ steps.flutter_version.outputs.version_number }}.apk
             iperon-android-${{ steps.flutter_version.outputs.version_number }}.aab
-
-#            build/app/outputs/flutter-apk/*.apk
-#            build/app/outputs/bundle/release/*.aab
-
-#          bodyFile: "body.md"
-
-#      - name: "Upload artifact android application (apk)"
-#        uses: actions/upload-artifact@v4
-#        with:
-#          name: iperon-android-${{ steps.flutter_version.outputs.version_number }}.apk
-#          path: |
-#            build/app/outputs/flutter-apk/app-release.apk
-#          retention-days: 90
-#
-#      - name: "Upload artifact android application (abb)"
-#        uses: actions/upload-artifact@v4
-#        with:
-#          name: iperon-android-${{ steps.flutter_version.outputs.version_number }}.abb
-#          path: |
-#            build/app/outputs/bundle/release/app-release.aab
-#          retention-days: 90
-#
-#      - name: "Upload artifact ios application (app)"
-#        uses: actions/upload-artifact@v4
-#        with:
-#          name: iperon-ios-${{ steps.flutter_version.outputs.version_number }}.app
-#          path: |
-#            build/ios/iphoneos/Runner.app
-#          retention-days: 90
