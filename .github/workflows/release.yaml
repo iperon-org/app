@@ -43,6 +43,13 @@ jobs:
       - name: "Build ios"
         run: flutter build ios --release --no-codesign
 
+      - name: Conventional Commits
+        id: changelog
+        uses: requarks/changelog-action@v1
+        with:
+          token: ${{ github.token }}
+          tag: ${{ github.ref_name }}
+
       - name: "Build pre release"
         run: |
           mv build/ios/iphoneos/Runner.app iperon-${{ steps.flutter_version.outputs.version_number }}.app
@@ -52,7 +59,8 @@ jobs:
 
       - uses: ncipollo/release-action@v1
         with:
-          generateReleaseNotes: true
+#          generateReleaseNotes: true
+          body: ${{ steps.changelog.outputs.changes }}
           artifacts: |
             iperon-ios-${{ steps.flutter_version.outputs.version_number }}.tar.gz
             iperon-android-${{ steps.flutter_version.outputs.version_number }}.apk
